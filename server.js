@@ -3,6 +3,9 @@ const path = require('path');
 const app = express();
 const faker = require('faker');
 
+const db = require('./db');
+const { Product } = db.models;
+
 app.use('/dist', express.static(path.join(__dirname, 'dist')));
 
 app.get('/', (req, res, next) => res.sendFile(path.join(__dirname, 'index.html')));
@@ -22,17 +25,5 @@ app.post('/api/products', (req, res, next) => {
 const port = process.env.port || 3000;
 app.listen(port, () => console.log(`listening on port ${port}`));
 
-const Sequelize = require('sequelize');
-const conn = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost/acme_product_specials');
-
-const Product = conn.define('product', {
-  name: Sequelize.STRING
-});
-
-conn.sync({ force: true })
-  .then(() => {
-    return Promise.all([
-      Product.create({ name: 'dan' }),
-      Product.create({ name: 'theMan' })
-    ]);
-  });
+db.sync()
+  .then(() => db.seed());
