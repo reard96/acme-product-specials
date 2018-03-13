@@ -21,6 +21,12 @@ class App extends Component {
       .then(products => this.setState({ products }));
   }
 
+  // changeProduct() {
+  //   axios.put('/api/products')
+  //     .then(result => result.data)
+  //     .then(product)
+  // }
+
   render() {
     const { products } = this.state;
     return (
