@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+const faker = require('faker');
 
 app.use('/dist', express.static(path.join(__dirname, 'dist')));
 
@@ -9,6 +10,12 @@ app.get('/', (req, res, next) => res.sendFile(path.join(__dirname, 'index.html')
 app.get('/api/products', (req, res, next) => {
   Product.findAll()
     .then(products => res.send(products))
+    .catch(next);
+});
+
+app.post('/api/products', (req, res, next) => {
+  Product.create({ name: faker.commerce.productName() })
+    .then(product => res.send(product))
     .catch(next);
 });
 

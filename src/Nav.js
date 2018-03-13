@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Nav = ({ location }) => {
+const Nav = ({ location, products }) => {
   const path = location.pathname;
   return (
     <ul>
@@ -17,9 +17,9 @@ const Nav = ({ location }) => {
       <li>
       {
         path === '/products' ? (
-          <span>Products</span>
+          <span>Products: { products.length }</span>
         ) : (
-          <Link to="/products">Products</Link>
+          <Link to="/products">Products: { products.length }</Link>
         )
       }
       </li>
