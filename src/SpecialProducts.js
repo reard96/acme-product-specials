@@ -1,12 +1,13 @@
 import React from 'react';
 
-const Products = ({ products }) => {
+const SpecialProducts = ({ products }) => {
+  const returnProducts = products.filter(product => product.isSpecial === true);
   return (
     <div>
-    <h2>All Products:</h2>
+    <h2>Special Products:</h2>
     <ul>
       {
-        products.map(product => {
+        returnProducts.map(product => {
           return (
             <li key={ product.id }>
               { product.name }
@@ -19,4 +20,4 @@ const Products = ({ products }) => {
   );
 }
 
-export default Products;
+export default SpecialProducts;

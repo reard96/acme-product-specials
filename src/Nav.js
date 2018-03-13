@@ -17,9 +17,27 @@ const Nav = ({ location, products }) => {
       <li>
       {
         path === '/products' ? (
-          <span>Products: { products.length }</span>
+          <span>View all { products.length } of our products</span>
         ) : (
-          <Link to="/products">Products: { products.length }</Link>
+          <Link to="/products">View all { products.length } of our products</Link>
+        )
+      }
+      </li>
+      <li>
+      {
+        path === '/special-products' ? (
+          <span>View our special products</span>
+        ) : (
+          <Link to="/special-products">View our special products</Link>
+        )
+      }
+      </li>
+      <li>
+      {
+        path === '/regular-products' ? (
+          <span>View our regular products</span>
+        ) : (
+          <Link to="/regular-products">View our regular products</Link>
         )
       }
       </li>
